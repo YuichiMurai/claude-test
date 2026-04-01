@@ -151,7 +151,9 @@ def chunk_text(text: str, max_chars: int = MAX_CHUNK_CHARS) -> list[str]:
                     else:
                         if sub_chunk:
                             chunks.append(sub_chunk.strip())
-                        # それでも長すぎる場合は文字数で強制分割
+                        # それでも長すぎる場合は文字数で強制分割（フォールバック）
+                        # PythonのUnicode文字列スライスはマルチバイト文字を正しく扱うため
+                        # 日本語文字の途中で切れることはない
                         if len(sentence) > max_chars:
                             for i in range(0, len(sentence), max_chars):
                                 chunks.append(sentence[i:i + max_chars].strip())

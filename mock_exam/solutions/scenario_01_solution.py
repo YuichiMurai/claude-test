@@ -293,9 +293,11 @@ JSON形式のみで回答してください（説明不要）。
         ):
             return True, "ユーザーが強い怒りを示しています"
 
-        # 条件3: 会話が繰り返し続いている（閾値を超えたターン数）
+        # 条件3: 会話が長引いている（閾値ターン数を超えた場合）
+        # 注: 同じ問題の繰り返し検出は複雑になるため、ここではターン数の合計を
+        # 「解決に至っていない長い会話」の代替指標として使用する
         if self.turn_count >= ESCALATION_REPEAT_THRESHOLD:
-            return True, f"{ESCALATION_REPEAT_THRESHOLD}回以上やり取りが続いています"
+            return True, f"{ESCALATION_REPEAT_THRESHOLD}回以上会話が続いています"
 
         return False, ""
 

@@ -465,7 +465,7 @@ class ContentModerator:
         print(f"\n✅ 処理完了")
         print(f"  - 合計: {total}件")
         print(f"  - クリア: {total - len(inappropriate_ids) - error_count}件")
-        print(f"  - 不適切検出: {len(inappropriate_ids)}件 ({', '.join(inappropriate_ids)})")
+        print(f"  - 不適切検出: {len(inappropriate_ids)}件 ({', '.join(inappropriate_ids) if inappropriate_ids else 'なし'})")
         print(f"  - エラー: {error_count}件")
 
         return results
